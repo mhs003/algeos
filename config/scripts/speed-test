@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -euo pipefail
+
+cache_dir="${XDG_CACHE_HOME:-$HOME/.cache}/algeos"
+cache="$cache_dir/speed.json"
+
+mkdir -p "$cache_dir"
+printf '{"state":"running","time":%s}\n' "$(date +%s)" >"$cache"
+pkill -SIGRTMIN+8 waybar 2>/dev/null || true
+
+result="$(speedtest-cli --json 2>/dev/null)" || result=""
+
+if [[ $result == \{* ]]; then
+  python3 - "$cache" "$result" <<'PY'
+import json
+import sys
+import time
+
+cache, raw = sys.argv[1], sys.argv[2]
+source = json.loads(raw)
+
+with open(cache, "w") as f:
+    json.dump(
+        {
+            "download": source.get("download", 0),
+            "upload": source.get("upload", 0),
+            "ping": source.get("ping", 0),
+            "time": time.time(),
+        },
+        f,
+    )
+PY
+else
+  printf '{"state":"error","time":%s}\n' "$(date +%s)" >"$cache"
+fi
+
+pkill -SIGRTMIN+8 waybar 2>/dev/null || true

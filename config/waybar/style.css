@@ -36,11 +36,29 @@ window#waybar {
 #bluetooth,
 #pulseaudio,
 #backlight,
+#power-profiles-daemon,
 #battery,
+#custom-speed,
 #clock,
 #custom-power {
     padding: 0 10px;
     color: #e6e8ee;
+}
+
+#power-profiles-daemon.performance {
+    color: #f38ba8;
+}
+
+#power-profiles-daemon.power-saver {
+    color: #a6e3a1;
+}
+
+#custom-speed.idle {
+    color: #6c7086;
+}
+
+#custom-speed.testing {
+    color: #f9e2af;
 }
 
 #battery.warning {

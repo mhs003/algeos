@@ -13,7 +13,9 @@
         "bluetooth",
         "pulseaudio",
         "backlight",
+        "power-profiles-daemon",
         "battery",
+        "custom/speed",
         "clock",
         "custom/power"
     ],
@@ -42,6 +44,21 @@
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
         "on-click": "alacritty -e bluetui"
+    },
+    "power-profiles-daemon": {
+        "format": "<span color='#89b4fa'>ppd</span> {profile}",
+        "tooltip": true,
+        "tooltip-format": "Power profile: {profile}\nDriver: {driver}\n\nclick to cycle · right-click to choose",
+        "on-click": "$HOME/.local/bin/power-profile",
+        "on-click-right": "$HOME/.local/bin/power-profile menu"
+    },
+    "custom/speed": {
+        "exec": "$HOME/.local/bin/speed-meter",
+        "interval": 10,
+        "signal": 8,
+        "return-type": "json",
+        "tooltip": true,
+        "on-click": "$HOME/.local/bin/speed-test"
     },
     "pulseaudio": {
         "format": "<span color='#89b4fa'>vol</span> {volume}%",
