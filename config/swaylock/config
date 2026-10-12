@@ -1,0 +1,42 @@
+# Lock screen. Every line is a swaylock long option; flags stand alone.
+# swaylock reads this by default from ~/.config/swaylock/config.
+
+# The default background is a light grey screen; keep it dark instead.
+color=131318
+
+font=JetBrainsMono Nerd Font
+font-size=16
+
+# A large ring, transparent inside, so the background shows through.
+indicator-radius=110
+indicator-thickness=8
+inside-color=00000000
+inside-ver-color=00000000
+inside-wrong-color=00000000
+inside-clear-color=00000000
+inside-caps-lock-color=00000000
+line-color=00000000
+line-ver-color=00000000
+line-wrong-color=00000000
+line-clear-color=00000000
+line-caps-lock-color=00000000
+separator-color=00000000
+
+ring-color=89b4fa
+ring-ver-color=f9e2af
+ring-wrong-color=f38ba8
+ring-clear-color=6c7086
+ring-caps-lock-color=f38ba8
+key-hl-color=89b4fa
+bs-hl-color=f38ba8
+caps-lock-key-hl-color=f38ba8
+caps-lock-bs-hl-color=f38ba8
+
+text-color=e6e8ee
+text-ver-color=e6e8ee
+text-wrong-color=f38ba8
+text-clear-color=6c7086
+text-caps-lock-color=f38ba8
+
+show-failed-attempts
+indicator-caps-lock

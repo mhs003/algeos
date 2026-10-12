@@ -15,7 +15,7 @@ binds {
     Mod+Q repeat=false hotkey-overlay-title="Close window" { close-window; }
     Mod+O repeat=false hotkey-overlay-title="Overview" { toggle-overview; }
     Mod+X hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/power-menu"; }
-    Super+Alt+L hotkey-overlay-title="Lock screen" { spawn "swaylock"; }
+    Super+Alt+L hotkey-overlay-title="Lock screen" { spawn-sh "$HOME/.local/bin/lock"; }
 
     // Focus
     Mod+Left hotkey-overlay-title="Focus column left" { focus-column-left; }
