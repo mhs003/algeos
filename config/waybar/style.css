@@ -33,6 +33,7 @@ window#waybar {
 }
 
 #network,
+#bluetooth,
 #pulseaudio,
 #backlight,
 #battery,
