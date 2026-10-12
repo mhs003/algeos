@@ -3,7 +3,7 @@ binds {
     Mod+Shift+Slash hotkey-overlay-title="Search every keybinding" { spawn-sh "$HOME/.local/bin/keybinds"; }
     Mod+Shift+E hotkey-overlay-title="Quit niri" { quit; }
     Ctrl+Alt+Delete hotkey-overlay-title="Quit niri" { quit; }
-    Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle shortcut inhibitor" { toggle-keyboard-shortcuts-inhibit; }
+    Mod+Shift+Escape allow-inhibiting=false hotkey-overlay-title="Toggle shortcut inhibitor" { toggle-keyboard-shortcuts-inhibit; }
 
     // Applications
     Mod+Return hotkey-overlay-title="Terminal" { spawn "alacritty"; }
@@ -14,6 +14,7 @@ binds {
     Mod+L hotkey-overlay-title="Screenshot" { screenshot; }
     Mod+Q repeat=false hotkey-overlay-title="Close window" { close-window; }
     Mod+O repeat=false hotkey-overlay-title="Overview" { toggle-overview; }
+    Mod+Escape hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/power-menu"; }
     Mod+X hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/power-menu"; }
     Super+Alt+L hotkey-overlay-title="Lock screen" { spawn-sh "$HOME/.local/bin/lock"; }
 
