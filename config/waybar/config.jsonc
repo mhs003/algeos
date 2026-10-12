@@ -1,13 +1,11 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 28,
-    "spacing": 4,
+    "height": 30,
+    "spacing": 0,
 
     "modules-left": [
-        "niri/workspaces"
-    ],
-    "modules-center": [
+        "niri/workspaces",
         "niri/window"
     ],
     "modules-right": [
@@ -16,7 +14,7 @@
         "backlight",
         "battery",
         "clock",
-        "tray"
+        "custom/power"
     ],
 
     "niri/workspaces": {
@@ -25,28 +23,27 @@
     },
     "niri/window": {
         "format": "{title}",
-        "max-length": 60
+        "max-length": 48
     },
 
     "network": {
-        "format-wifi": "{essid} ({signalStrength}%)",
-        "format-ethernet": "{ipaddr}/{cidr}",
-        "format-disconnected": "offline",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "tooltip-format": "{ifname} via {gwaddr}"
+        "format-wifi": "<span color='#89b4fa'>wifi</span> {essid}",
+        "format-ethernet": "<span color='#89b4fa'>eth</span> {ipaddr}",
+        "format-disconnected": "<span color='#f38ba8'>offline</span>",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "on-click": "alacritty -e iwctl"
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-muted": "muted",
-        "format-icons": {
-            "headphone": "",
-            "headset": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+        "format": "<span color='#89b4fa'>vol</span> {volume}%",
+        "format-muted": "<span color='#f38ba8'>muted</span>",
+        "tooltip-format": "{desc}",
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
     },
     "backlight": {
-        "format": "{percent}%",
+        "format": "<span color='#89b4fa'>bri</span> {percent}%",
         "on-scroll-up": "brightnessctl set +5%",
         "on-scroll-down": "brightnessctl set 5%-"
     },
@@ -55,17 +52,19 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-icons": ["", "", "", "", ""]
+        "format": "<span color='#89b4fa'>bat</span> {capacity}%",
+        "format-charging": "<span color='#a6e3a1'>bat</span> {capacity}%",
+        "format-plugged": "<span color='#a6e3a1'>bat</span> {capacity}%",
+        "on-click": "alacritty -e btop"
     },
     "clock": {
-        "format": "{:%H:%M}",
-        "format-alt": "{:%Y-%m-%d}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+        "format": "{:%I:%M %p}",
+        "format-alt": "{:%a %d %b}",
+        "tooltip-format": "<big>{:%B %Y}</big>\n<tt><small>{calendar}</small></tt>"
     },
-    "tray": {
-        "spacing": 10
+    "custom/power": {
+        "format": "<span color='#f38ba8'>power</span>",
+        "tooltip": false,
+        "on-click": "$HOME/.local/bin/power-menu"
     }
 }

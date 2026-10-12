@@ -10,6 +10,10 @@ input {
         tap
         natural-scroll
     }
+
+    // Focus whatever window the mouse moves onto, scrolling it into view if
+    // it is currently off-screen.
+    focus-follows-mouse
 }
 
 layout {
@@ -37,7 +41,7 @@ layout {
 
 // Rounded corners on every window.
 window-rule {
-    geometry-corner-radius 8
+    geometry-corner-radius 4
     clip-to-geometry true
 }
 
@@ -69,6 +73,7 @@ binds {
     Mod+L { screenshot; }
     Mod+Q repeat=false { close-window; }
     Mod+O repeat=false { toggle-overview; }
+    Mod+X { spawn-sh "$HOME/.local/bin/power-menu"; }
     Super+Alt+L { spawn "swaylock"; }
 
     // Focus
