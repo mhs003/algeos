@@ -1,0 +1,12 @@
+[Unit]
+Description=Idle management: lock and turn off the display
+PartOf=graphical-session.target
+After=graphical-session.target
+
+[Service]
+ExecCondition=/bin/sh -c '[ -n "$WAYLAND_DISPLAY" ]'
+ExecStart=/usr/bin/swayidle -w timeout 600 'swaylock -f' timeout 900 'niri msg action power-off-monitors' before-sleep 'swaylock -f'
+Restart=on-failure
+
+[Install]
+WantedBy=graphical-session.target
