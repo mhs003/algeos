@@ -1,0 +1,169 @@
+#!/usr/bin/env python3
+"""Fullscreen animated internet speed test, drawn in the terminal."""
+
+import json
+import re
+import select
+import shutil
+import signal
+import subprocess
+import sys
+import termios
+import threading
+import time
+import tty
+
+RESET = "\033[0m"
+BOLD = "\033[1m"
+ACCENT = "\033[38;2;137;180;250m"
+GREEN = "\033[38;2;166;227;161m"
+YELLOW = "\033[38;2;249;226;175m"
+RED = "\033[38;2;243;139;168m"
+MUTED = "\033[38;2;108;112;134m"
+
+SPINNER = "\u280b\u2819\u2839\u2838\u283c\u2834\u2826\u2827\u2807\u280f"
+ANSI = re.compile(r"\033\[[0-9;]*m")
+
+state = "running"
+result = {}
+error = ""
+started = time.time()
+finished_at = None
+
+
+def measure():
+    global state, result, error, finished_at
+
+    try:
+        completed = subprocess.run(
+            ["speedtest-cli", "--json"],
+            capture_output=True,
+            text=True,
+            timeout=180,
+        )
+        data = json.loads(completed.stdout)
+        result = {
+            "down": data.get("download", 0) / 1_000_000,
+            "up": data.get("upload", 0) / 1_000_000,
+            "ping": data.get("ping", 0),
+        }
+        state = "done"
+    except Exception as exc:  # noqa: BLE001
+        error = str(exc).splitlines()[0] if str(exc) else "measurement failed"
+        state = "error"
+
+    finished_at = time.time()
+
+
+def centre(text, cols):
+    visible = len(ANSI.sub("", text))
+    return " " * max(0, (cols - visible) // 2) + text
+
+
+def ease(t):
+    return 1 - (1 - t) ** 3
+
+
+def bar(fraction, width, colour, sweep=None):
+    fraction = max(0.0, min(1.0, fraction))
+    filled = int(round(fraction * width))
+    cells = []
+    for i in range(width):
+        if i < filled:
+            cells.append(f"{colour}\u2588{RESET}")
+        elif sweep is not None and sweep <= i < sweep + 6:
+            cells.append(f"{YELLOW}\u2592{RESET}")
+        else:
+            cells.append(f"{MUTED}\u2591{RESET}")
+    return "".join(cells)
+
+
+def reading(value, unit):
+    return f"{BOLD}{ACCENT}{value:7.1f}{RESET}  {MUTED}{unit}{RESET}"
+
+
+def frame():
+    cols, rows = shutil.get_terminal_size()
+    width = min(max(cols - 14, 30), 100)
+    now = time.time()
+    elapsed = now - started
+
+    if state == "running":
+        shown = 0.0
+        up_shown = 0.0
+        ping_shown = 0
+        sweep = int(elapsed * 16) % (width + 6)
+        spinner = SPINNER[int(elapsed * 10) % len(SPINNER)]
+        status = f"{ACCENT}{spinner}{RESET}  {MUTED}measuring\u2026  {elapsed:4.0f}s{RESET}"
+    else:
+        shown = up_shown = 0.0
+        ping_shown = 0
+        sweep = None
+        if state == "done":
+            shown = result["down"] * ease(min(1.0, (now - finished_at) / 1.0))
+            up_shown = result["up"] * ease(min(1.0, max(0.0, (now - finished_at - 0.6) / 1.0)))
+            ping_shown = int(
+                result["ping"] * min(1.0, max(0.0, (now - finished_at - 1.2) / 0.6))
+            )
+            status = f"{GREEN}\u2713  done{RESET}"
+        else:
+            status = f"{RED}{error}{RESET}"
+
+    body = [
+        f"{MUTED}I N T E R N E T   S P E E D{RESET}",
+        "",
+        f"{MUTED}DOWNLOAD{RESET}",
+        bar(shown / 1000.0, width, ACCENT, sweep),
+        reading(shown, "Mb/s"),
+        "",
+        f"{MUTED}UPLOAD{RESET}",
+        bar(up_shown / 1000.0, width, GREEN),
+        reading(up_shown, "Mb/s"),
+        "",
+        f"{MUTED}PING{RESET}   {BOLD}{ping_shown}{RESET} {MUTED}ms{RESET}",
+        "",
+        status,
+        f"{MUTED}esc to close{RESET}",
+    ]
+
+    top = max(0, (rows - len(body)) // 2 - 1)
+    lines = [""] * top + [centre(line, cols) for line in body]
+
+    return "\033[H" + "\n".join(lines) + "\033[J"
+
+
+def main():
+    if not sys.stdin.isatty():
+        print("speedtest-tui needs a terminal", file=sys.stderr)
+        return 1
+
+    settings = termios.tcgetattr(sys.stdin)
+    thread = threading.Thread(target=measure, daemon=True)
+
+    try:
+        tty.setcbreak(sys.stdin.fileno())
+        sys.stdout.write("\033[?1049h\033[?25l")
+        sys.stdout.flush()
+        thread.start()
+
+        while True:
+            sys.stdout.write(frame())
+            sys.stdout.flush()
+
+            if select.select([sys.stdin], [], [], 0.05)[0]:
+                if sys.stdin.read(1) in ("\x1b", "q", "\x03"):
+                    break
+
+            if finished_at is not None and time.time() - finished_at > 8:
+                break
+    finally:
+        sys.stdout.write("\033[?25h\033[?1049l")
+        sys.stdout.flush()
+        termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
+
+    return 0
+
+
+if __name__ == "__main__":
+    signal.signal(signal.SIGINT, lambda *_: sys.exit(0))
+    raise SystemExit(main())

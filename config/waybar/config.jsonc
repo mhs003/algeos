@@ -15,7 +15,7 @@
         "backlight",
         "power-profiles-daemon",
         "battery",
-        "custom/speed",
+        "custom/net",
         "clock",
         "custom/power"
     ],
@@ -52,13 +52,12 @@
         "on-click": "$HOME/.local/bin/power-profile",
         "on-click-right": "$HOME/.local/bin/power-profile menu"
     },
-    "custom/speed": {
-        "exec": "$HOME/.local/bin/speed-meter",
-        "interval": 10,
-        "signal": 8,
+    "custom/net": {
+        "exec": "$HOME/.local/bin/net-speed",
+        "interval": 1,
         "return-type": "json",
         "tooltip": true,
-        "on-click": "$HOME/.local/bin/speed-test"
+        "on-click": "$HOME/.local/bin/speedtest"
     },
     "pulseaudio": {
         "format": "<span color='#89b4fa'>vol</span> {volume}%",

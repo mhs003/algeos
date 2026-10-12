@@ -45,6 +45,13 @@ window-rule {
     clip-to-geometry true
 }
 
+// The speed-test overlay opens as a fullscreen floating window.
+window-rule {
+    match app-id=r#"^algeos-speedtest$"#
+    open-floating true
+    open-fullscreen true
+}
+
 // No client-side titlebars anywhere; move windows by dragging with Mod held.
 prefer-no-csd
 

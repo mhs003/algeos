@@ -1,4 +1,4 @@
-echo "Add power-profile switching and an internet speed test to the bar"
+echo "Add power profiles, a realtime net monitor, and a speed-test overlay to the bar"
 
 packages=(
   power-profiles-daemon
@@ -39,20 +39,22 @@ deploy() {
   cmp -s "$src" "$dst" 2>/dev/null || cp "$src" "$dst"
 }
 
+if ! niri validate -c "$ALGEOS_PATH/config/niri/config.kdl" >/dev/null 2>&1; then
+  echo "The niri config in the repo is invalid; refusing to deploy it" >&2
+  exit 1
+fi
+
+deploy "$ALGEOS_PATH/config/niri/config.kdl" "$HOME/.config/niri/config.kdl"
 deploy "$ALGEOS_PATH/config/waybar/config.jsonc" "$HOME/.config/waybar/config.jsonc"
 deploy "$ALGEOS_PATH/config/waybar/style.css" "$HOME/.config/waybar/style.css"
 
 mkdir -p "$HOME/.local/bin"
-for script in power-profile speed-test speed-meter; do
+for script in power-profile net-speed speedtest speedtest-tui; do
   deploy "$ALGEOS_PATH/config/scripts/$script" "$HOME/.local/bin/$script"
   chmod 755 "$HOME/.local/bin/$script"
 done
 
-systemctl --user restart waybar.service 2>/dev/null || true
+# Superseded by the realtime monitor and the overlay.
+rm -f "$HOME/.local/bin/speed-meter" "$HOME/.local/bin/speed-test"
 
-# Seed the speed module once, in the background, so its hover panel has
-# something to show straight away. Failures are ignored; clicking retries.
-speed_cache="${XDG_CACHE_HOME:-$HOME/.cache}/algeos/speed.json"
-if [[ ! -s $speed_cache ]]; then
-  setsid --fork "$HOME/.local/bin/speed-test" >/dev/null 2>&1 || true
-fi
+systemctl --user restart waybar.service 2>/dev/null || true

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# A bigger font makes the overlay read as a full-screen panel rather than a
+# terminal window.
+exec alacritty --class algeos-speedtest --title speedtest \
+  -o font.size=18 \
+  -e "$HOME/.local/bin/speedtest-tui"

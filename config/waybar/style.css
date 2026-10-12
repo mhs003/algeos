@@ -38,7 +38,7 @@ window#waybar {
 #backlight,
 #power-profiles-daemon,
 #battery,
-#custom-speed,
+#custom-net,
 #clock,
 #custom-power {
     padding: 0 10px;
@@ -53,12 +53,8 @@ window#waybar {
     color: #a6e3a1;
 }
 
-#custom-speed.idle {
+#custom-net.off {
     color: #6c7086;
-}
-
-#custom-speed.testing {
-    color: #f9e2af;
 }
 
 #battery.warning {
