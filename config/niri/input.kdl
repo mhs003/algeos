@@ -1,0 +1,14 @@
+input {
+    keyboard {
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    // Focus whatever window the mouse moves onto, scrolling it into view if
+    // it is currently off-screen.
+    focus-follows-mouse
+}

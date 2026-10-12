@@ -1,0 +1,15 @@
+// No client-side titlebars anywhere; move windows by dragging with Mod held.
+prefer-no-csd
+
+// Rounded corners on every window.
+window-rule {
+    geometry-corner-radius 4
+    clip-to-geometry true
+}
+
+// The speed-test overlay opens as a fullscreen floating window.
+window-rule {
+    match app-id=r#"^algeos-speedtest$"#
+    open-floating true
+    open-fullscreen true
+}

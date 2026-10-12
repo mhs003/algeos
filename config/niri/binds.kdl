@@ -1,0 +1,139 @@
+binds {
+    // Shell
+    Mod+Shift+Slash hotkey-overlay-title="Search every keybinding" { spawn-sh "$HOME/.local/bin/keybinds"; }
+    Mod+Shift+E hotkey-overlay-title="Quit niri" { quit; }
+    Ctrl+Alt+Delete hotkey-overlay-title="Quit niri" { quit; }
+    Mod+Escape allow-inhibiting=false hotkey-overlay-title="Toggle shortcut inhibitor" { toggle-keyboard-shortcuts-inhibit; }
+
+    // Applications
+    Mod+Return hotkey-overlay-title="Terminal" { spawn "alacritty"; }
+    Mod+Shift+Return hotkey-overlay-title="Browser" { spawn "google-chrome-stable"; }
+    Alt+Shift+Return hotkey-overlay-title="File manager" { spawn "nautilus"; }
+    Mod+Space hotkey-overlay-title="App launcher" { spawn "fuzzel"; }
+    Mod+D hotkey-overlay-title="App launcher" { spawn "fuzzel"; }
+    Mod+L hotkey-overlay-title="Screenshot" { screenshot; }
+    Mod+Q repeat=false hotkey-overlay-title="Close window" { close-window; }
+    Mod+O repeat=false hotkey-overlay-title="Overview" { toggle-overview; }
+    Mod+X hotkey-overlay-title="Power menu" { spawn-sh "$HOME/.local/bin/power-menu"; }
+    Super+Alt+L hotkey-overlay-title="Lock screen" { spawn "swaylock"; }
+
+    // Focus
+    Mod+Left hotkey-overlay-title="Focus column left" { focus-column-left; }
+    Mod+Right hotkey-overlay-title="Focus column right" { focus-column-right; }
+    Mod+Up hotkey-overlay-title="Focus window up" { focus-window-up; }
+    Mod+Down hotkey-overlay-title="Focus window down" { focus-window-down; }
+    Mod+H hotkey-overlay-title="Focus column left" { focus-column-left; }
+    Mod+J hotkey-overlay-title="Focus window down" { focus-window-down; }
+    Mod+K hotkey-overlay-title="Focus window up" { focus-window-up; }
+    Alt+C hotkey-overlay-title="Focus column right" { focus-column-right; }
+    Alt+Z hotkey-overlay-title="Focus column left" { focus-column-left; }
+
+    // Move windows and columns
+    Mod+Ctrl+Left hotkey-overlay-title="Move column left" { move-column-left; }
+    Mod+Ctrl+Right hotkey-overlay-title="Move column right" { move-column-right; }
+    Mod+Ctrl+Up hotkey-overlay-title="Move window up" { move-window-up; }
+    Mod+Ctrl+Down hotkey-overlay-title="Move window down" { move-window-down; }
+    Mod+Ctrl+H hotkey-overlay-title="Move column left" { move-column-left; }
+    Mod+Ctrl+J hotkey-overlay-title="Move window down" { move-window-down; }
+    Mod+Ctrl+K hotkey-overlay-title="Move window up" { move-window-up; }
+    Mod+Ctrl+L hotkey-overlay-title="Move column right" { move-column-right; }
+
+    // Monitors
+    Mod+Shift+Left hotkey-overlay-title="Focus monitor left" { focus-monitor-left; }
+    Mod+Shift+Right hotkey-overlay-title="Focus monitor right" { focus-monitor-right; }
+    Mod+Shift+Up hotkey-overlay-title="Focus monitor up" { focus-monitor-up; }
+    Mod+Shift+Down hotkey-overlay-title="Focus monitor down" { focus-monitor-down; }
+    Mod+Shift+Ctrl+Left hotkey-overlay-title="Move column to monitor left" { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Right hotkey-overlay-title="Move column to monitor right" { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Up hotkey-overlay-title="Move column to monitor up" { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Down hotkey-overlay-title="Move column to monitor down" { move-column-to-monitor-down; }
+
+    // Workspaces
+    Alt+D hotkey-overlay-title="Workspace down" { focus-workspace-down; }
+    Alt+A hotkey-overlay-title="Workspace up" { focus-workspace-up; }
+    Mod+Page_Down hotkey-overlay-title="Workspace down" { focus-workspace-down; }
+    Mod+Page_Up hotkey-overlay-title="Workspace up" { focus-workspace-up; }
+    Mod+U hotkey-overlay-title="Workspace down" { focus-workspace-down; }
+    Mod+I hotkey-overlay-title="Workspace up" { focus-workspace-up; }
+    Mod+Ctrl+Page_Down hotkey-overlay-title="Move column to workspace down" { move-column-to-workspace-down; }
+    Mod+Ctrl+Page_Up hotkey-overlay-title="Move column to workspace up" { move-column-to-workspace-up; }
+    Mod+Ctrl+U hotkey-overlay-title="Move column to workspace down" { move-column-to-workspace-down; }
+    Mod+Ctrl+I hotkey-overlay-title="Move column to workspace up" { move-column-to-workspace-up; }
+    Mod+Shift+Page_Down hotkey-overlay-title="Move workspace down" { move-workspace-down; }
+    Mod+Shift+Page_Up hotkey-overlay-title="Move workspace up" { move-workspace-up; }
+    Mod+Shift+U hotkey-overlay-title="Move workspace down" { move-workspace-down; }
+    Mod+Shift+I hotkey-overlay-title="Move workspace up" { move-workspace-up; }
+
+    Mod+1 hotkey-overlay-title="Workspace 1" { focus-workspace 1; }
+    Mod+2 hotkey-overlay-title="Workspace 2" { focus-workspace 2; }
+    Mod+3 hotkey-overlay-title="Workspace 3" { focus-workspace 3; }
+    Mod+4 hotkey-overlay-title="Workspace 4" { focus-workspace 4; }
+    Mod+5 hotkey-overlay-title="Workspace 5" { focus-workspace 5; }
+    Mod+6 hotkey-overlay-title="Workspace 6" { focus-workspace 6; }
+    Mod+7 hotkey-overlay-title="Workspace 7" { focus-workspace 7; }
+    Mod+8 hotkey-overlay-title="Workspace 8" { focus-workspace 8; }
+    Mod+9 hotkey-overlay-title="Workspace 9" { focus-workspace 9; }
+    Mod+Ctrl+1 hotkey-overlay-title="Move column to workspace 1" { move-column-to-workspace 1; }
+    Mod+Ctrl+2 hotkey-overlay-title="Move column to workspace 2" { move-column-to-workspace 2; }
+    Mod+Ctrl+3 hotkey-overlay-title="Move column to workspace 3" { move-column-to-workspace 3; }
+    Mod+Ctrl+4 hotkey-overlay-title="Move column to workspace 4" { move-column-to-workspace 4; }
+    Mod+Ctrl+5 hotkey-overlay-title="Move column to workspace 5" { move-column-to-workspace 5; }
+    Mod+Ctrl+6 hotkey-overlay-title="Move column to workspace 6" { move-column-to-workspace 6; }
+    Mod+Ctrl+7 hotkey-overlay-title="Move column to workspace 7" { move-column-to-workspace 7; }
+    Mod+Ctrl+8 hotkey-overlay-title="Move column to workspace 8" { move-column-to-workspace 8; }
+    Mod+Ctrl+9 hotkey-overlay-title="Move column to workspace 9" { move-column-to-workspace 9; }
+
+    // Columns and sizing
+    Mod+BracketLeft hotkey-overlay-title="Consume or expel window left" { consume-or-expel-window-left; }
+    Mod+BracketRight hotkey-overlay-title="Consume or expel window right" { consume-or-expel-window-right; }
+    Mod+Comma hotkey-overlay-title="Consume window into column" { consume-window-into-column; }
+    Mod+Period hotkey-overlay-title="Expel window from column" { expel-window-from-column; }
+    Mod+R hotkey-overlay-title="Cycle column width" { switch-preset-column-width; }
+    Mod+Shift+R hotkey-overlay-title="Cycle column width back" { switch-preset-column-width-back; }
+    Mod+Ctrl+R hotkey-overlay-title="Reset window height" { reset-window-height; }
+    Mod+Ctrl+Shift+R hotkey-overlay-title="Cycle window height" { switch-preset-window-height; }
+    Mod+F hotkey-overlay-title="Maximize column" { maximize-column; }
+    Mod+Shift+F hotkey-overlay-title="Fullscreen window" { fullscreen-window; }
+    Mod+M hotkey-overlay-title="Maximize window to edges" { maximize-window-to-edges; }
+    Mod+Ctrl+F hotkey-overlay-title="Expand column to available width" { expand-column-to-available-width; }
+    Mod+C hotkey-overlay-title="Center column" { center-column; }
+    Mod+Ctrl+C hotkey-overlay-title="Center visible columns" { center-visible-columns; }
+    Mod+Minus hotkey-overlay-title="Shrink column" { set-column-width "-10%"; }
+    Mod+Equal hotkey-overlay-title="Grow column" { set-column-width "+10%"; }
+    Mod+Shift+Minus hotkey-overlay-title="Shrink window height" { set-window-height "-10%"; }
+    Mod+Shift+Equal hotkey-overlay-title="Grow window height" { set-window-height "+10%"; }
+    Mod+V hotkey-overlay-title="Toggle floating" { toggle-window-floating; }
+    Mod+Shift+V hotkey-overlay-title="Switch floating and tiling focus" { switch-focus-between-floating-and-tiling; }
+    Mod+W hotkey-overlay-title="Toggle tabbed column" { toggle-column-tabbed-display; }
+
+    // Scroll wheel
+    Mod+WheelScrollDown cooldown-ms=150 hotkey-overlay-title="Wheel: workspace down" { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 hotkey-overlay-title="Wheel: workspace up" { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown cooldown-ms=150 hotkey-overlay-title="Wheel: move column to workspace down" { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp cooldown-ms=150 hotkey-overlay-title="Wheel: move column to workspace up" { move-column-to-workspace-up; }
+    Mod+WheelScrollRight hotkey-overlay-title="Wheel: focus column right" { focus-column-right; }
+    Mod+WheelScrollLeft hotkey-overlay-title="Wheel: focus column left" { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight hotkey-overlay-title="Wheel: move column right" { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft hotkey-overlay-title="Wheel: move column left" { move-column-left; }
+    Mod+Shift+WheelScrollDown hotkey-overlay-title="Wheel: focus column right" { focus-column-right; }
+    Mod+Shift+WheelScrollUp hotkey-overlay-title="Wheel: focus column left" { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown hotkey-overlay-title="Wheel: move column right" { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp hotkey-overlay-title="Wheel: move column left" { move-column-left; }
+
+    // Media and brightness
+    XF86AudioRaiseVolume allow-when-locked=true hotkey-overlay-title="Volume up" { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"; }
+    XF86AudioLowerVolume allow-when-locked=true hotkey-overlay-title="Volume down" { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
+    XF86AudioMute allow-when-locked=true hotkey-overlay-title="Mute" { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
+    XF86AudioMicMute allow-when-locked=true hotkey-overlay-title="Mute microphone" { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
+    XF86AudioPlay allow-when-locked=true hotkey-overlay-title="Play or pause" { spawn-sh "playerctl play-pause"; }
+    XF86AudioStop allow-when-locked=true hotkey-overlay-title="Stop playback" { spawn-sh "playerctl stop"; }
+    XF86AudioPrev allow-when-locked=true hotkey-overlay-title="Previous track" { spawn-sh "playerctl previous"; }
+    XF86AudioNext allow-when-locked=true hotkey-overlay-title="Next track" { spawn-sh "playerctl next"; }
+    XF86MonBrightnessUp allow-when-locked=true hotkey-overlay-title="Brightness up" { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
+    XF86MonBrightnessDown allow-when-locked=true hotkey-overlay-title="Brightness down" { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    // Screenshots
+    Print hotkey-overlay-title="Screenshot" { screenshot; }
+    Ctrl+Print hotkey-overlay-title="Screenshot whole screen" { screenshot-screen; }
+    Alt+Print hotkey-overlay-title="Screenshot window" { screenshot-window; }
+}

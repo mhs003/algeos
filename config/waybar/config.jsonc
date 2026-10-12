@@ -12,7 +12,6 @@
         "network",
         "bluetooth",
         "pulseaudio",
-        "backlight",
         "power-profiles-daemon",
         "battery",
         "custom/net",
@@ -67,11 +66,6 @@
         "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
         "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
         "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
-    },
-    "backlight": {
-        "format": "<span color='#89b4fa'>bri</span> {percent}%",
-        "on-scroll-up": "brightnessctl set +5%",
-        "on-scroll-down": "brightnessctl set 5%-"
     },
     "battery": {
         "states": {

@@ -1,0 +1,22 @@
+layout {
+    gaps 6
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    // Thin accent ring on the focused window only.
+    focus-ring {
+        width 2
+        active-color "#89b4fa"
+        inactive-color "#313244"
+    }
+
+    border {
+        off
+    }
+}
