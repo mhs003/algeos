@@ -4,7 +4,7 @@ set -euo pipefail
 
 choice=$(
   printf '%s\n' Lock Suspend Reboot Shutdown |
-    fuzzel --dmenu --prompt='power > ' --lines=4
+    fuzzel --dmenu --no-icons --prompt='power > ' --lines=4
 ) || exit 0
 
 case "$choice" in

@@ -5,7 +5,7 @@ set -euo pipefail
 profiles=(power-saver balanced performance)
 
 if [[ ${1:-} == menu ]]; then
-  choice=$(printf '%s\n' "${profiles[@]}" | fuzzel --dmenu --prompt='power profile > ' --lines=3) || exit 0
+  choice=$(printf '%s\n' "${profiles[@]}" | fuzzel --dmenu --no-icons --prompt='power profile > ' --lines=3) || exit 0
   [[ -n $choice ]] && powerprofilesctl set "$choice"
   exit 0
 fi

@@ -92,7 +92,8 @@ def main():
     listing = "\n".join(f"{binding:<{width}}   {action}" for binding, action in rows)
 
     subprocess.run(
-        ["fuzzel", "--dmenu", "--prompt=keys > ", "--lines=15", "--width=76"],
+        # A plain two-column listing: icons would have nothing to show here.
+        ["fuzzel", "--dmenu", "--no-icons", "--prompt=keys > ", "--lines=15", "--width=76"],
         input=listing,
         text=True,
     )
