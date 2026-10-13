@@ -33,7 +33,7 @@
         "format-ethernet": "<span color='#89b4fa'>eth</span> {ipaddr}",
         "format-disconnected": "<span color='#f38ba8'>offline</span>",
         "tooltip-format": "{ifname} via {gwaddr}",
-        "on-click": "alacritty -e impala"
+        "on-click": "alacritty --class algeos-impala -e impala"
     },
     "bluetooth": {
         "format": "<span color='#89b4fa'>bt</span>",
@@ -42,7 +42,7 @@
         "tooltip-format": "{controller_alias}\t{controller_address}",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "on-click": "alacritty -e bluetui"
+        "on-click": "alacritty --class algeos-bluetui -e bluetui"
     },
     "power-profiles-daemon": {
         "format": "<span color='#89b4fa'>ppd</span> {profile}",

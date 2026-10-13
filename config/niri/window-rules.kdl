@@ -13,3 +13,10 @@ window-rule {
     open-floating true
     open-fullscreen true
 }
+
+// Tool windows opened from the bar (the wifi and bluetooth TUIs) and the
+// screenshot editor float instead of joining the scrolling layout.
+window-rule {
+    match app-id=r#"^algeos[-.](impala|bluetui|screenshot)$"#
+    open-floating true
+}

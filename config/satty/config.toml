@@ -1,0 +1,17 @@
+# Screenshot editor. Only settings the command line cannot give per invocation
+# live here; the launcher passes the image and the app id.
+
+[font]
+family = "JetBrainsMono Nerd Font"
+
+[color-palette]
+# The desktop accent palette, RRGGBBAA.
+palette = [
+    "#89b4faff",
+    "#f38ba8ff",
+    "#a6e3a1ff",
+    "#f9e2afff",
+    "#cba6f7ff",
+    "#94e2d5ff",
+    "#fab387ff",
+]

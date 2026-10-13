@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -euo pipefail
+
+dir="$HOME/Pictures/Screenshots"
+
+# The notification niri shows carries no path, so the capture it refers to is
+# the newest one on disk.
+newest=$(find "$dir" -maxdepth 1 -type f -name '*.png' -printf '%T@ %p\n' 2>/dev/null |
+  sort -rn | head -1 | cut -d' ' -f2-) || true
+[[ -n ${newest:-} ]] || exit 0
+
+exec satty \
+  --filename "$newest" \
+  --app-id algeos.screenshot \
+  --title "Screenshot" \
+  --output-filename "$dir/annotated-%Y-%m-%d %H-%M-%S.png" \
+  --copy-command wl-copy \
+  --font-family "JetBrainsMono Nerd Font" \
+  --no-window-decoration

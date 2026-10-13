@@ -12,3 +12,7 @@ background-color=#1e1e2e
 text-color=#c8ccd4
 border-color=#89b4fa
 progress-color=over #313244
+
+# Clicking niri's screenshot notification opens the capture in the editor.
+[summary="Screenshot captured"]
+on-button-left=exec $HOME/.local/bin/screenshot-edit
