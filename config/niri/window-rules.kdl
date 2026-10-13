@@ -14,9 +14,26 @@ window-rule {
     open-fullscreen true
 }
 
-// Tool windows opened from the bar (the wifi and bluetooth TUIs) and the
-// screenshot editor float instead of joining the scrolling layout.
+// Windows opened from the bar float instead of joining the layout: the wifi,
+// bluetooth and system monitor TUIs, the volume window and the screenshot
+// editor. A floating window keeps whatever size the application asks for,
+// which is small, so the tool windows are given a share of the working area.
 window-rule {
-    match app-id=r#"^algeos[-.](impala|bluetui|screenshot)$"#
+    match app-id=r#"^algeos-(impala|bluetui|btop)$"#
     open-floating true
+    default-column-width { proportion 0.6; }
+    default-window-height { proportion 0.6; }
+}
+
+// The editor sizes itself to the screenshot, which is the right size for it.
+window-rule {
+    match app-id=r#"^algeos\.screenshot$"#
+    open-floating true
+}
+
+window-rule {
+    match app-id=r#"^org\.pulseaudio\.pavucontrol$"#
+    open-floating true
+    default-column-width { proportion 0.5; }
+    default-window-height { proportion 0.6; }
 }

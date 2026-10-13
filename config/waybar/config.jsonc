@@ -75,7 +75,7 @@
         "format": "<span color='#89b4fa'>bat</span> {capacity}%",
         "format-charging": "<span color='#a6e3a1'>bat</span> {capacity}%",
         "format-plugged": "<span color='#a6e3a1'>bat</span> {capacity}%",
-        "on-click": "alacritty -e btop"
+        "on-click": "alacritty --class algeos-btop -e btop"
     },
     "clock": {
         "format": "{:%I:%M %p}",
